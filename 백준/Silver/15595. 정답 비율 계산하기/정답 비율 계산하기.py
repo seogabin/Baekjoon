@@ -2,7 +2,7 @@ from sys import stdin
 
 def main():
     N = int(input().strip())
-    user_dict = {}
+    userdict = {}
 
     for _ in range(N):
         sub, user, result, memory, time, lang, length = stdin.readline().strip().split()
@@ -11,23 +11,23 @@ def main():
         if user == "megalusion":
             continue
 
-        if user not in user_dict:
-            user_dict[user] = {'incorrect': 0, 'solved': False}
+        if user not in userdict:
+            userdict[user] = {'incorrect': 0, 'solved': False}
 
         if result == 4:
-            if not user_dict[user]['solved']:
-                user_dict[user]['solved'] = True
+            if not userdict[user]['solved']:
+                userdict[user]['solved'] = True
         else:
-            if not user_dict[user]['solved']:
-                user_dict[user]['incorrect'] += 1
+            if not userdict[user]['solved']:
+                userdict[user]['incorrect'] += 1
 
-    solved_count = sum(1 for stats in user_dict.values() if stats['solved'])
-    total_incorrect = sum(stats['incorrect'] for stats in user_dict.values() if stats['solved'])
+    solvedCnt = sum(1 for stats in userdict.values() if stats['solved'])
+    total = sum(stats['incorrect'] for stats in userdict.values() if stats['solved'])
 
-    if solved_count == 0:
+    if solvedCnt == 0:
         print("0")
     else:
-        ans = (solved_count / (solved_count + total_incorrect)) * 100
+        ans = (solvedCnt / (solvedCnt + total)) * 100
         print(f"{ans:.9f}")
 
 if __name__ == "__main__":
